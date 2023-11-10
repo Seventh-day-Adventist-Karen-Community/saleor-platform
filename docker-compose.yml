@@ -4,7 +4,7 @@ services:
   api:
     image: ghcr.io/saleor/saleor:3.17
     ports:
-      - 8000:8000
+      - 8009:8000
     restart: unless-stopped
     networks:
       - saleor-backend-tier
@@ -22,25 +22,37 @@ services:
       - backend.env
     environment:
       - JAEGER_AGENT_HOST=jaeger
-      - DASHBOARD_URL=http://localhost:9000/
-      - ALLOWED_HOSTS=localhost,api
+      - DASHBOARD_URL=http://localhost:9001/
+      - ALLOWED_HOSTS=localhost,api,vps.sdackc.org
 
   dashboard:
-    image: ghcr.io/saleor/saleor-dashboard:latest
+    build:
+      context: ./saleor-dashboard
+      dockerfile: ./saleor-dashboard/Dockerfile
     ports:
-      - 9000:80
+      - 9001:80
+    restart: unless-stopped
+
+  storefront:
+    build:
+      context: ./storefront
+      dockerfile: ./storefront/Dockerfile
+    ports:
+      - 9001:80
     restart: unless-stopped
 
   db:
     image: library/postgres:13-alpine
     ports:
-      - 5432:5432
+      - 5431:5432
     restart: unless-stopped
     networks:
       - saleor-backend-tier
     volumes:
       - saleor-db:/var/lib/postgresql/data
       - ./replica_user.sql:/docker-entrypoint-initdb.d/replica_user.sql
+    env_file:
+      - backend.env
     environment:
       - POSTGRES_USER=saleor
       - POSTGRES_PASSWORD=saleor
@@ -48,7 +60,7 @@ services:
   redis:
     image: library/redis:7.0-alpine
     ports:
-      - 6379:6379
+      - 6378:6379
     restart: unless-stopped
     networks:
       - saleor-backend-tier

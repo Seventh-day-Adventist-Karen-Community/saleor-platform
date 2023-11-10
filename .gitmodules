@@ -4,3 +4,6 @@
 [submodule "storefront"]
 	path = storefront
 	url = https://github.com/Seventh-day-Adventist-Karen-Community/storefront.git
+[submodule "saleor"]
+	path = saleor
+	url = https://github.com/Seventh-day-Adventist-Karen-Community/saleor.git
