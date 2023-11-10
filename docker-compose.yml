@@ -42,6 +42,8 @@ services:
     ports:
       - 9001:80
     restart: unless-stopped
+    environment:
+      - NEXT_PUBLIC_SALEOR_API_URL='http://vps.sdackc.org:9001/graphql/'
 
   db:
     image: library/postgres:13-alpine
