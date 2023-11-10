@@ -4,6 +4,7 @@ services:
   api:
     build:
       context: ./saleor
+      dockerfile: Dockerfile
     ports:
       - 8009:8000
     restart: unless-stopped
@@ -29,16 +30,18 @@ services:
   dashboard:
     build:
       context: ./saleor-dashboard
+      dockerfile: Dockerfile
     ports:
       - 9001:80
     restart: unless-stopped
 
-  storefront:
-    build:
-      context: ./storefront
-    ports:
-      - 9001:80
-    restart: unless-stopped
+  # storefront:
+  #   build:
+  #     context: ./storefront
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 9001:80
+  #   restart: unless-stopped
 
   db:
     image: library/postgres:13-alpine
