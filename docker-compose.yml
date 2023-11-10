@@ -32,7 +32,7 @@ services:
       context: ./saleor-dashboard
       dockerfile: Dockerfile
     ports:
-      - 9001:80
+      - 3001:80
     restart: unless-stopped
 
   storefront:
