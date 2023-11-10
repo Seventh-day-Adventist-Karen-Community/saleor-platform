@@ -4,7 +4,7 @@ services:
   api:
     build:
       context: ./saleor
-      dockerfile: Dockerfile
+      dockerfile: ./Dockerfile
     ports:
       - 8009:8000
     restart: unless-stopped
@@ -27,13 +27,13 @@ services:
       - DASHBOARD_URL=http://localhost:9001/
       - ALLOWED_HOSTS=localhost,api,vps.sdackc.org
 
-  dashboard:
-    build:
-      context: ./saleor-dashboard
-      dockerfile: Dockerfile
-    ports:
-      - 9001:80
-    restart: unless-stopped
+  # dashboard:
+  #   build:
+  #     context: ./saleor-dashboard
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 9001:80
+  #   restart: unless-stopped
 
   # storefront:
   #   build:
