@@ -1,0 +1,6 @@
+[submodule "saleor-dashboard"]
+	path = saleor-dashboard
+	url = https://github.com/jetsstarplus/saleor-dashboard.git
+[submodule "storefront"]
+	path = storefront
+	url = https://github.com/Seventh-day-Adventist-Karen-Community/storefront.git
