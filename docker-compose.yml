@@ -4,7 +4,7 @@ services:
   api:
     build:
       context: ./saleor
-      dockerfile: ./Dockerfile
+      dockerfile: ./saleor/Dockerfile
     ports:
       - 8009:8000
     restart: unless-stopped
